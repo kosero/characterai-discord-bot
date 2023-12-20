@@ -1,0 +1,2 @@
+# characterai-discord-bot
+ 
