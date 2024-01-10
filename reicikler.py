@@ -60,3 +60,4 @@ async def reispeak(message):
 
     await reimsj(text)
     return
+    

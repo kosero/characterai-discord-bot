@@ -6,8 +6,8 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix='a!', intents=intents)
-TOKEN = "bot_token"
-word_list = ["hello", "Evangelion", "Hi chat", "Helloo", "Hello", "Greetings", "evangelion", "good nights", "good sleeps", "hi.", "Neon Genesis Evangelion"]
+TOKEN = "BOT_TOKEN"
+liste = ["selam", "Evangelion", "Naber chat", "Selammm", "Selamm", "Selamlar", "Yapay zeka", "evangelion", "ii geceler", "ii uykular", "iyi geceler", "iyi uykular", "merhaba", "merhabalar", "nasılsınız", "sa.", "selammm", "selamlar", "slm", "sa", "ii gclr", "Neon Genesis Evangelion"]
 
 @bot.event
 async def on_ready():
@@ -35,14 +35,14 @@ async def on_message(message):
         return
 
     # Checking the words in the list
-    elif any(word.lower() in message.content.lower() for word in liste):
+    kelimeKontrol = message.content.lower().split()[0]
+    if any(word.lower() == kelimeKontrol for word in liste) and not kelimeKontrol.endswith('.'):
         await message.channel.typing()
         await reicikler.asukaspeak(message)
         return
-
+        
     # check whether the reply message was sent by a bot or not
     elif message.reference and message.reference.message_id and message.reference.resolved.author.id == bot.user.id:
-        await message.channel.typing()
         await reicikler.asukaspeak(message)
         return
 
@@ -59,5 +59,5 @@ async def ping(ctx):
     await message.channel.typing()
     await ctx.send("Pong")
     await reicikler.reimsj("Pong")
-
+    
 bot.run(TOKEN)

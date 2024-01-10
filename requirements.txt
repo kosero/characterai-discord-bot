@@ -1,4 +1,4 @@
-discord.py
-aiohttp
-characterai
-websockets
+discord.py==1.7.3
+aiohttp==3.7.4
+characterai==1.2.0
+websockets==9.1
