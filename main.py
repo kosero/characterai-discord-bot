@@ -17,6 +17,11 @@ async def on_ready():
 async def on_message(message):
     if message.author.bot:
         return
+    
+    # check whether the reply message was sent by a bot or not
+    elif message.reference and message.reference.message_id and message.reference.resolved.author.id == bot.user.id:
+        await reicikler.asukaspeak(message)
+        return
 
     # Special reactions to Asuka and Rei
     elif "asuka" in message.content.lower() and message.content.lower().index("asuka") == 0:
@@ -38,11 +43,6 @@ async def on_message(message):
     kelimeKontrol = message.content.lower().split()[0]
     if any(word.lower() == kelimeKontrol for word in liste) and not kelimeKontrol.endswith('.'):
         await message.channel.typing()
-        await reicikler.asukaspeak(message)
-        return
-        
-    # check whether the reply message was sent by a bot or not
-    elif message.reference and message.reference.message_id and message.reference.resolved.author.id == bot.user.id:
         await reicikler.asukaspeak(message)
         return
 
